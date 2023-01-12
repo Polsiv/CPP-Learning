@@ -1,0 +1,69 @@
+body{
+    margin: 0;
+    box-sizing: border-box;
+    
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 97vh;
+}
+
+.checkbox{
+    width: 52px;
+    height: 32px;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    background-color: #49454f;
+    border-radius: 24px;
+    -webkit-border-radius: 24px;
+    -moz-border-radius: 24px;
+    -ms-border-radius: 24px;
+    -o-border-radius: 24px;
+    border: solid 2px #938f99;
+    transition: border-color 200ms, background-color 200ms;
+    -webkit-transition: border-color 200ms, background-color 200ms;
+    -moz-transition: border-color 200ms, background-color 200ms;
+    -ms-transition: border-color 200ms, background-color 200ms;
+    -o-transition: border-color 200ms, background-color 200ms;
+
+    cursor: pointer;
+}
+
+.checkbox::before{
+    content: "";
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border-radius: 12px;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    -ms-border-radius: 12px;
+    -o-border-radius: 12px;
+    background-color: #938f99;
+    transition: width 200ms, height 200ms, transform 200ms, background-color 200ms ;
+    -webkit-transition: width 200ms, height 200ms, transform 200ms, background-color 200ms ;
+    -moz-transition: width 200ms, height 200ms, transform 200ms, background-color 200ms ;
+    -ms-transition: width 200ms, height 200ms, transform 200ms, background-color 200ms ;
+    -o-transition: width 200ms, height 200ms, transform 200ms, background-color 200ms ;
+}
+
+.checkbox.on{
+    border-color: #D0BCFF;
+    background-color: #D0BCFF;
+    
+}
+
+.checkbox.on::before{
+    background-color: #381E72;
+    width: 24px;
+    height: 24px;
+    transform: translateX(calc);
+    -webkit-transform: translateX(calc);
+    -moz-transform: translateX(calc);
+    -ms-transform: translateX(calc);
+    -o-transform: translateX(calc);
+}
