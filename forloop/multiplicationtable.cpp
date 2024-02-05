@@ -10,18 +10,11 @@ int k = 1;
         std::cout << "The table of " << k << " is: ";
         std::cout <<"\n=========================\n";
 
-    
       for (int j = 1; j <= 10; j++) {
         std::cout << i << " x " << j << " = " << i*j << "\n";
        
-      }  k++;
-        
-        
+      }  k++;    
     } std::cout << std::endl;  
- 
-  
-
-  
   }
 
 
