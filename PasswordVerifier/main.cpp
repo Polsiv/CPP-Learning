@@ -2,6 +2,7 @@
 #include <vector>
 #include <string>
 #include <fstream>
+#include <regex>
 using namespace std;
 
 class InputManager {
@@ -21,24 +22,48 @@ class InputManager {
     }
 };
 
-class ResultPrinter{
-  public:
-    void show_results(){
-    std::cout << "sup";
-    }
-};
+
 
 class PassWordValidator{
   public:
-  vector <string> validate_password(vector <string> passwords){
-    vector <string> verifiedPasswords;
+    vector <string> validate_password(vector <string> passwords){
+        vector <string> verifiedPasswords;
+        regex uppercase("[A-Z]");
+        regex lowercase("[a-z]");
+        regex numbers("[0-9]");
+        regex symbols("[!-/]");
+        regex absense("[^A-Za-z0-9!-/]");
 
-    for (auto password: passwords){
-        
+        for (auto password: passwords){ 
+            string is_valid = " false";
+            bool has_length = password.length() > 16 || password.length() < 8;
+            string length = has_length ? " length" : "";
+            bool has_uppercase = !regex_search(password, uppercase);
+            string upper_case = has_uppercase ? " upper_case" : "";
+            bool has_lowercase = !regex_search(password, lowercase);
+            string lower_case = has_lowercase ? " lower_case" : "";
+            bool has_number = !regex_search(password, numbers);
+            string number = has_number ? " number" : "";
+            bool has_symbol = !regex_search(password, symbols);
+            string symbol = has_symbol ? " special_symbol": "";
+            bool has_out_of_scope = regex_search(password, absense);
+            string out_of_scope = has_out_of_scope ? " invalid" : "";
 
-
+            if (!(has_length || has_uppercase || has_lowercase || has_number || has_symbol || has_out_of_scope )){
+                is_valid = " true";
+            }
+            verifiedPasswords.push_back(is_valid + length + upper_case + lower_case + number + symbol + out_of_scope);
+            }
+        return verifiedPasswords;
     }
-    return vector <string> {};
+};
+
+class ResultPrinter{
+  public:
+    void show_results(vector <string> passwords, vector <string> verified){
+        for (size_t i = 0; i < passwords.size() && i < verified.size(); ++i) {
+            cout << passwords[i] << verified[i] << endl;
+        }
     }
 };
 
@@ -58,13 +83,15 @@ class System{
         }
         
     void show(){
-        for (auto password: passwords){
-            cout << password << endl;
-        }
+       resultPrinted.show_results(passwords, verified);
     }
 };
     
-int main(){
-  System system;
-  system.show();
-}
+class Main{
+    public:
+    int main(){
+        System system;
+        system.show();
+        return 0;
+    }
+};
