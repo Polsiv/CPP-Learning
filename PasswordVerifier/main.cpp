@@ -22,8 +22,6 @@ class InputManager {
     }
 };
 
-
-
 class PassWordValidator{
   public:
     vector <string> validate_password(vector <string> passwords){
@@ -61,7 +59,7 @@ class PassWordValidator{
 class ResultPrinter{
   public:
     void show_results(vector <string> passwords, vector <string> verified){
-        for (size_t i = 0; i < passwords.size() && i < verified.size(); ++i) {
+        for (int i = 0; i < passwords.size() && i < verified.size(); ++i) {
             cout << passwords[i] << verified[i] << endl;
         }
     }
@@ -82,16 +80,15 @@ class System{
         verified = validator.validate_password(passwords);
         }
         
-    void show(){
-       resultPrinted.show_results(passwords, verified);
+    void show(vector<string> Passwords, vector<string> Verified){
+       resultPrinted.show_results(Passwords, Verified);
     }
 };
-    
-class Main{
-    public:
-    int main(){
-        System system;
-        system.show();
-        return 0;
-    }
-};
+
+int main(){
+    System system;
+    vector <string> passwords = system.passwords;
+    vector <string> verified = system.verified;
+    system.show(passwords, verified);
+    return 0;
+}
